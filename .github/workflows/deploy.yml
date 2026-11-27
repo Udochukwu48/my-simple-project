@@ -8,7 +8,7 @@ on:
 
 jobs:
   terraform:
-    name: Terraform Plan
+    name: Terraform Plan and Apply
     runs-on: ubuntu-latest
 
     env:
@@ -40,4 +40,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -input=false -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -input=false tfplan
